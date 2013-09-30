@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim 高级技能书 | KouHu_2's Workshop</title>
+  <meta name="author" content="KouHu_2">
+  
+  <meta name="description" content="Coding with Java and Python">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Vim 高级技能书"/>
+  <meta property="og:site_name" content="KouHu_2's Workshop"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/images/hiahia.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="KouHu_2's Workshop" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div id = head class="alignleft">
+<div id = title>
+<h1><a href="/">KouHu_2's Workshop</a></h1>
+<h2><a href="/">Coding with Java and Python</a></h2>
+</div>  
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+    <li> <a href="/atom.xml">Rss</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-28T11:57:56.000Z"><a href="/2013/09/28/vim-skill-book/">9月 28 2013</a></time>
+      
+      
+  
+    <h1 class="title">Vim 高级技能书</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>刚上手Vim没多久，除了基本的移动方向、插入、删除、修改等在tutor中学到的技能以外，我决定把遇到的高级技能不断更新在这个文档里，忘了可以拿出来看看，也可以当作一个教程。<br><a id="more"></a></p>
+<h2>功能类</h2>
+<hr>
+<p>包括Vim本身知道的一些功能，比如多标签。  </p>
+<h3>标签页</h3>
+<hr>
+<ul>
+<li><p>新建标签页  </p>
+<figure class="highlight lang-vim"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="symbol">:tabnew</span> <span class="comment"># 新建一个空的标签页</span>
+<span class="symbol">:tabe</span> a.txt <span class="comment"># 新建一个标签页并打开a.txt文件</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>对所有标签进行操作</p>
+<figure class="highlight lang-vim"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="symbol">:tabdo</span> <span class="comment"># 后面可以加上各种操作</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>在标签页之间切换</p>
+<figure class="highlight lang-vim"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="title">gt</span> <span class="comment"># 切换到下一个标签页</span>
+gT <span class="comment"># 切换到上一个标签页</span>
+</pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2>批量操作类</h2>
+<hr>
+<p>包括批量删除列、批量条件替换等。</p>
+<h3>批量操作列</h3>
+<hr>
+<ul>
+<li><p>批量在所有行首添加内容  </p>
+<figure class="highlight lang-vim"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="number">1</span>G         <span class="comment"># 移动光标到要开始批量操作的行号1</span>
+ctrl+v     <span class="comment"># 进入块选择模式(在win下模认变为ctrl+q)</span>
+<span class="number">10</span>G        <span class="comment"># 选择从1-10的所有行的第一列</span>
+<span class="keyword">shift</span>+i    <span class="comment"># 即大写的I，进入插入模式</span>
+ESC        <span class="comment"># 写入要插入的内容后按ESC结束操作</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>批量删除行首内容</p>
+<figure class="highlight lang-vim"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>1G         <span class="comment"># 移动光标到要开始批量操作的行号1</span>
+ctrl+v     <span class="comment"># 进入块选择模式(在win下模认变为ctrl+q)</span>
+10G        <span class="comment"># 选择从1-10的所有行的第一列(可左右移动选中前若干列)</span>
+d          <span class="comment"># 用d或x删除所有选中内容</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>批量在行尾添加内容</p>
+<figure class="highlight lang-vim"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="number">1</span>G         <span class="comment"># 移动光标到要开始批量操作的行号1</span>
+ctrl+v     <span class="comment"># 进入块选择模式(在win下模认变为ctrl+q)</span>
+<span class="number">10</span>G        <span class="comment"># 选择从1-10的所有行的第一列</span>
+<span class="variable">$ </span>         <span class="comment"># 扩大选择到行尾</span>
+shift+a    <span class="comment"># 即大写的A，进入插入模式</span>
+<span class="constant">ESC</span>        <span class="comment"># 写入要插入的内容后按ESC结束操作</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>批量在行尾删除内容</p>
+<figure class="highlight lang-vim"><figcaption><span>因为行尾参差不齐，故使用录制操作</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="number">1</span>G         <span class="comment"># 移动光标到要开始批量操作的行号1</span>
+qa         <span class="comment"># 开始录制到代号为a的容器中(a可替换成其他字母)</span>
+<span class="variable">$ </span>         <span class="comment"># 移动光标到行尾(如果要删除行尾多个字就停在第一个字上)</span>
+d<span class="variable">$ </span>        <span class="comment"># 删除从光标之后的全部内容</span>
+<span class="constant">ESC</span>        <span class="comment"># 回到普通模式</span>
+j          <span class="comment"># 移动光标到下一个要操作的行</span>
+q          <span class="comment"># 结束录制</span>
+<span class="number">10</span><span class="variable">@a</span>       <span class="comment"># 执行刚才录制的a操作10次(如果要一直操作的文末，可以输入个很大的数，比如99999<span class="yardoctag">@a</span>，操作到文末会自动停止)</span>
+</pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3>批量替换</h3>
+<hr>
+<p><code>:%s/old/new/g</code></p>
+<p><code>%</code>表示匹配全部行，即纵向所有行进行操作</p>
+<p><code>s/old/new</code>表示进行的是替换操作，用new替换old，old可以使用正则表达式</p>
+<p><code>/g</code>表示匹配全部列，即横向对所有列进行操作</p>
+<p>以上合起来即对全文进行替换操作把所有符合old的东西替换成new</p>
+<h2>其他</h2>
+<hr>
+<h3>基本操作图</h3>
+<hr>
+<p><img src="/images/blog/vim-cheat-sheet-full.png" alt="Vim基本操作(点击放大)"><br>这个图的作者是<a href="http://blog.vgod.tw/" target="_blank">Vgod</a>，他还放出了<a href="http://blog.vgod.tw/wp-content/uploads/2009/12/vgod-vim-cheat-sheet-full.pdf" target="_blank">PDF版</a>用作打印贴在墙上。</p>
+<h3>我的配置文件</h3>
+<hr>
+<p><a href="https://github.com/kouhu2/Vim/blob/master/vimrc" target="_blank">vimrc</a></p>
+<h3>我的插件</h3>
+<hr>
+<p><a href="https://github.com/tpope/vim-pathogen" target="_blank">pathogen</a><br><a href="https://github.com/Lokaltog/vim-powerline" target="_blank">powerline</a><br><a href="https://github.com/scrooloose/nerdtree" target="_blank">nerdtree</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Vim/">Vim</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/vim/">vim</a>, <a href="/tags/教程/">教程</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+    <!-- Duoshuo Comment BEGIN -->
+    	<div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kouhu2-git"};
+    	(function() {
+    		var ds = document.createElement('script');
+    		ds.type = 'text/javascript';ds.async = true;
+    		ds.src = 'http://static.duoshuo.com/embed.js';
+    		ds.charset = 'UTF-8';
+    		(document.getElementsByTagName('head')[0] 
+    		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+    	})();
+    	</script>
+    <!-- Duoshuo Comment END -->
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:kouhu2.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/categories/Vim/">Vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+    <li><a href="/tags/字体/">字体</a><small>1</small></li>
+  
+    <li><a href="/tags/教程/">教程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 KouHu_2
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
